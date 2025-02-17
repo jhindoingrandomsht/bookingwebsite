@@ -23,12 +23,26 @@
         }
         #calendar {
             width: 50vw;
-            height: 68vh; /* Fixed height to ensure 6 weeks always fit */
+            height: 68vh;
             background: white;
             padding: 10px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             overflow: hidden;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            #calendar {
+                width: 90vw;
+                height: 80vh;
+            }
+            .fc-toolbar-title {
+                font-size: 1.2em;
+            }
+            .fc-button {
+                font-size: 0.8em;
+            }
         }
     </style>
 </head>
