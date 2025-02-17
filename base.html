@@ -23,13 +23,12 @@
         }
         #calendar {
             width: 50vw;
-            height: 60vh; /* Default for 5-week months */
+            height: 68vh; /* Fixed height to ensure 6 weeks always fit */
             background: white;
             padding: 10px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             overflow: hidden;
-            transition: height 0.3s ease;
         }
     </style>
 </head>
@@ -44,8 +43,6 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const calendarEl = document.getElementById('calendar');
-            let maxHeight = '60vh'; // Default height for 5 weeks
-
             const calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
                 contentHeight: 'auto',
@@ -61,24 +58,12 @@
                     { title: 'Meeting', start: '2025-02-17T10:00:00', end: '2025-02-17T11:00:00' },
                     { title: 'Conference', start: '2025-02-20', allDay: true }
                 ],
-                datesSet: function () {
-                    setTimeout(adjustCalendarHeight, 50);
+                dateClick: function(info) {
+                    alert('Clicked on date: ' + info.dateStr);
                 }
             });
 
-            function adjustCalendarHeight() {
-                const calendarTable = document.querySelector('.fc-scrollgrid');
-                if (calendarTable) {
-                    const weeks = calendarTable.querySelectorAll('tbody tr').length;
-                    if (weeks === 6) {
-                        maxHeight = '68vh'; // Expand for 6 weeks
-                    }
-                    calendarEl.style.height = maxHeight;
-                }
-            }
-
             calendar.render();
-            setTimeout(adjustCalendarHeight, 50);
         });
     </script>
 
